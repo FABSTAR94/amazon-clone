@@ -1,11 +1,11 @@
-import React from 'react';
-import './App.css';
-
+import React from "react";
+import "./App.css";
+import Header from "./Header";
 function App() {
   return (
     //This is using the BEM convention. for lowercase a on the classname
     <div className="app">
-      <h1>Hello there!</h1>
+      <Header />
     </div>
   );
 }
