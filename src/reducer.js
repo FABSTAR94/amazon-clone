@@ -1,5 +1,6 @@
 export const initialState = {
   basket: [],
+  user: null,
 };
 
 // Here we created a selector in which is highly used in production environments.
@@ -41,6 +42,13 @@ const reducer = (state, action) => {
         ...state,
         basket: newBasket,
       };
+
+    case "SET_USER":
+      return {
+        ...state,
+        user: action.user,
+      };
+
     default:
       return state;
   }
