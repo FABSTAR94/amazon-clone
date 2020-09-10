@@ -7,6 +7,7 @@ import Checkout from "./Checkout";
 import Login from "./Login";
 import { auth } from "./firebase";
 import { useStateValue } from "./StateProvider";
+import Payment from "./Payment";
 
 function App() {
   const [{}, dispatch] = useStateValue();
@@ -46,6 +47,10 @@ function App() {
             <Header />
             {/* If you go to the end of the word and press control space bar you can automatically fill the import */}
             <Checkout />
+          </Route>
+          <Route path="/payment">
+            <Header />
+            <Payment />
           </Route>
           {/* Remember that your default route goes at the very bottom */}
           <Route path="/">
