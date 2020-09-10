@@ -4,7 +4,6 @@ import { useStateValue } from "./StateProvider";
 // {}we break apart the object that we pass in. This is how we use props in react!
 function Product({ id, title, price, image, rating }) {
   const [{ basket }, dispatch] = useStateValue();
-  console.log("This is basket", basket);
 
   const addToBasket = () => {
     // dispatch the item into the data layer
