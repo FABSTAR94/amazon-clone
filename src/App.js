@@ -5,9 +5,16 @@ import Home from "./Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Checkout from "./Checkout";
 import Login from "./Login";
+import Payment from "./Payment";
 import { auth } from "./firebase";
 import { useStateValue } from "./StateProvider";
-import Payment from "./Payment";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+// This is a public key which is fine for it to be visible
+const promise = loadStripe(
+  "pk_test_51HPx7bHNiM4igthiuX3TAfiroTYlMINtXWKPUGtsGudMPbh9ZEzH4IE7LTEBXAdDzHUFY6uB8dyzDtj202phEpay00VePshP3O"
+);
 
 function App() {
   const [{}, dispatch] = useStateValue();
@@ -50,7 +57,9 @@ function App() {
           </Route>
           <Route path="/payment">
             <Header />
-            <Payment />
+            <Elements stripe={promise}>
+              <Payment />
+            </Elements>
           </Route>
           {/* Remember that your default route goes at the very bottom */}
           <Route path="/">

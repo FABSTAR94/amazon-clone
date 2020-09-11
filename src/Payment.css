@@ -26,7 +26,8 @@
 }
 
 .payment__address,
-.payment__items {
+.payment__items,
+.payment__details {
   /* takes 80% regardless of screen size */
   flex: 0.8;
 }
