@@ -1,16 +1,82 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Payment.css";
 import { useStateValue } from "./StateProvider";
 import CheckoutProduct from "./CheckoutProduct";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import CurrencyFormat from "react-currency-format";
+import { getBasketTotal } from "./reducer";
+import axios from "./axios";
+import { db } from "./firebase";
 
 function Payment() {
   const [{ basket, user }, dispatch] = useStateValue();
+  const history = useHistory();
+
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const [succeeded, setSucceeded] = useState(false);
+  const [processing, setProcessing] = useState("");
+  // Here we are just creating two pieces of state.
+  const [error, setError] = useState(null);
+  const [disabled, setDisabled] = useState(true);
+  const [clientSecret, setClientSecret] = useState(true);
+
+  //Whenever the basket changes it will make this request getClinetSecret.
+  //And it will update the stripe special stripe secret which allows us to charge the customer
+  //the correct amount.
+  useEffect(() => {
+    // generate the special stripe secret which allows us to charge a customer.
+    const getClientSecret = async () => {
+      //axios is a way of making requests such as post, get,etc.
+      const response = await axios({
+        method: "post",
+        //stripe expects the total in a currencies subunits. *100 changes it into cents.
+        url: `/payments/create?total=${getBasketTotal(basket) * 100}`,
+      });
+
+      setClientSecret(response.data.clientSecret);
+    };
+
+    getClientSecret();
+  }, [basket]);
+
+  // takes an event
+  //we are going to listen for changes in the CardElement.
+  // and display any errors as the customer types in their card details.
+  const handleSubmit = async (event) => {
+    //This will stop it from refreshing.
+    event.preventDefault();
+    setProcessing(true);
+
+    //uses the client secret to know how much to charge thenthe payment meth is the card then we find the card that matches.
+    const payload = await stripe
+      .confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+        },
+      })
+      //PaymentIntent is the payment confirmation.
+      .then(({ paymentIntent }) => {
+        setSucceeded(true);
+        setError(null);
+        setProcessing(false);
+
+        history.replace("/orders");
+      });
+  };
+  const handleChange = (event) => {
+    // if the event is empty then go ahead and disable the button
+    setDisabled(event.empty);
+    // if there is an error go ahead and show the error otherwise show nothing.
+    setError(event.error ? event.error.message : "");
+  };
 
   return (
     <div className="payment">
       <div className="payment__container">
-        {/* This will say how many basket items you have inside and if you click
+        {/* This will say how many basket items you have inside and if you click.
         on it it will take you back to the checkout page. */}
         <h1>
           Checkout (<Link to="/checkout">{basket?.length} items</Link>)
@@ -48,6 +114,7 @@ function Payment() {
             })}
           </div>
         </div>
+
         {/* payment method */}
         <div className="payment__section">
           <div className="payment__title">
@@ -55,6 +122,25 @@ function Payment() {
           </div>
           <div className="payment__details">
             {/* This is where we will add stripe */}
+            <form onSubmit={handleSubmit}>
+              <CardElement onChange={handleChange} />
+
+              <div className="payment__priceContainer">
+                <CurrencyFormat
+                  renderText={(value) => <h3>Order Total: {value}</h3>}
+                  decimalScale={2}
+                  value={getBasketTotal(basket)}
+                  displayType={"text"}
+                  thousandSeperator={true}
+                  prefix={"$"}
+                />
+                <button disabled={processing || disabled || succeeded}>
+                  <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
+                </button>
+              </div>
+              {/* If error with anything such as card num*/}
+              {error && <div>{error}</div>}
+            </form>
           </div>
         </div>
       </div>
