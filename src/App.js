@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Checkout from "./Checkout";
 import Login from "./Login";
 import Payment from "./Payment";
+import Orders from "./Orders";
 import { auth } from "./firebase";
 import { useStateValue } from "./StateProvider";
 import { loadStripe } from "@stripe/stripe-js";
@@ -46,6 +47,10 @@ function App() {
       <div className="app">
         {/* If you put the header comp outside it is saying to render it regardless what route you are on */}
         <Switch>
+          <Route path="/orders">
+            <Header />
+            <Orders />
+          </Route>
           <Route path="/login">
             <Login />
           </Route>
