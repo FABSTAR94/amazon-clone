@@ -59,6 +59,19 @@ function Payment() {
       })
       //PaymentIntent is the payment confirmation.
       .then(({ paymentIntent }) => {
+        //we are going to push into the database.
+        //we are targeting the user collections. this is using a nosql data structure.
+        //We are going into the users collection, then we are going to that users orders, then we are going into the document and we are going to use the paymentintent id
+        db.collection("users")
+          .doc(user?.uid)
+          .collection("orders")
+          .doc(paymentIntent.id)
+          .set({
+            basket: basket,
+            amount: paymentIntent.amount,
+            created: paymentIntent.created,
+          });
+
         setSucceeded(true);
         setError(null);
         setProcessing(false);
