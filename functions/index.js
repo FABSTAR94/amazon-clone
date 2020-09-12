@@ -1,9 +1,8 @@
 const functions = require("firebase-functions");
 const express = require("express");
 const cors = require("cors");
-const stripe = require("stripe")(
-  "sk_test_51HPx7bHNiM4igthifSAEhraEwPPOosxmBxHGsPTBsgtViBTew5AR8SRQKihWN9srI9bngIptdhJTF7oeHMVHqrNF00v9O56BxW"
-);
+const { stripe } = require("./secrets.js");
+
 //To set up an API we need:
 
 // - App config
