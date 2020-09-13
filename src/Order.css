@@ -8,6 +8,8 @@
 
 .order__id {
   position: absolute;
+  font-weight: 900;
+  font-size: 20px !important;
   top: 40px;
   right: 20px;
 }

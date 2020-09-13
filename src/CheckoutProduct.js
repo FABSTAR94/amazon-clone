@@ -26,7 +26,7 @@ function CheckoutProduct({ id, title, image, price, rating, hideButton }) {
           {Array(rating)
             .fill()
             .map((_, i) => (
-              <p>⭐️</p>
+              <p>★</p>
             ))}
         </div>
         {!hideButton && (
