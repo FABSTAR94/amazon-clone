@@ -14,11 +14,11 @@
   color: #6e9489;
   font-family: "Aladin", cursive;
   font-size: 30px;
-  color: #6e9489;
+  color: #fff;
   text-shadow: 2px 2px 4px #000000;
-  border: 2px solid #dedcc3;
-  padding: 20px;
-  background-color: #dedcc3;
+  border: 2px solid #6e9489;
+  padding: 15px;
+  background-color: #6e9489;
 }
 .login__container {
   width: 300px;
@@ -31,8 +31,9 @@
 }
 
 .login__container > h1 {
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 20px;
+  font-size: 27px;
 }
 
 .login__container > form > h5 {
