@@ -1,0 +1,43 @@
+.footer {
+  height: 400px;
+  align-items: center;
+  background-color: #6e9489;
+  top: 0;
+  z-index: 100;
+  padding: 0 10px;
+}
+
+.clmns {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 75px;
+}
+
+.clmns,
+h2 {
+  color: #fff;
+  font-size: 23px;
+}
+
+.cl__one,
+.cl__two,
+.cl__three,
+.cl__four,
+h2 {
+  margin: 10px;
+  font-size: 16px;
+  padding-left: 30px;
+}
+
+ul {
+  list-style-type: none;
+  display: table-cell;
+  padding-bottom: 20px;
+}
+
+.footer__half {
+  border-top: 1px solid #dedcc3;
+  padding-top: 20px;
+  color: #fff;
+  text-align: center;
+}
