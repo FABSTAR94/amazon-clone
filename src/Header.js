@@ -18,11 +18,12 @@ function Header() {
   return (
     <div className="header">
       {/* this is the amazon logo, The link allows you to go back to home page */}
-      <Link to="/">
-        <img
+      <Link to="/" style={{ textDecoration: "none" }}>
+        <h1 className="header__logo">AMZ.Clone</h1>
+        {/* <img
           className="header__logo"
           src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
-        />
+        /> */}
       </Link>
 
       {/* this is the searchbar */}
@@ -35,7 +36,7 @@ function Header() {
       <div className="header__nav">
         {/* This does not take you back to login page if you sign out it just
         changes the wording from sign in to sign out. */}
-        <Link to={!user && "./login"}>
+        <Link to={!user && "./login"} style={{ textDecoration: "none" }}>
           <div onClick={handleAuthentication} className="header__option">
             <span className="header__optionLineOne">
               Hello, {!user ? "Guest" : user.email}
@@ -46,7 +47,7 @@ function Header() {
             </span>
           </div>
         </Link>
-        <Link to="/orders">
+        <Link to="/orders" style={{ textDecoration: "none" }}>
           <div className="header__option">
             <span className="header__optionLineOne">Returns</span>
             <span className="header__optionLineTwo">& Orders</span>
@@ -56,7 +57,7 @@ function Header() {
           <span className="header__optionLineOne">Your</span>
           <span className="header__optionLineTwo">Prime</span>
         </div>
-        <Link to="/checkout">
+        <Link to="/checkout" style={{ textDecoration: "none" }}>
           <div className="header__optionBasket">
             <ShoppingBasketIcon />
             <span className="header__optionLineTwo header__basketCount">

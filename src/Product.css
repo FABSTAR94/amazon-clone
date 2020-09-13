@@ -11,6 +11,7 @@
   background-color: #fff;
   z-index: 1;
 }
+
 /* target the img inside the product className */
 .product__price {
   margin-top: 5px;
@@ -30,13 +31,19 @@
 }
 
 .product > button {
-  background: #f0c14b;
+  background: #dedcc3;
   border: 1px solid;
   margin-top: 10px;
-  border-color: #a88734 #9c7e31 #846a29;
+  border-color: #dedcc3;
   color: #111;
+  padding: 10px;
+}
+.product > button:hover {
+  cursor: pointer;
+  font-weight: bolder;
 }
 
 .product__rating {
   display: flex;
+  color: #6e9489;
 }

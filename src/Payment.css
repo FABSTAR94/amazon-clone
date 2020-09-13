@@ -12,6 +12,7 @@
 
 .payment__container > h1 a {
   text-decoration: none;
+  color: #6e9489;
 }
 
 .payment__section {
@@ -40,13 +41,14 @@
 }
 
 .payment__details > form > div > button {
-  background: #f0c14b;
+  background: #dedcc3;
   border-radius: 2px;
   width: 100%;
   height: 30px;
   border: 1px solid;
   font-weight: bolder;
   margin-top: 10px;
-  border-color: #a88734 #9c7e31 #846a29;
+  border-color: #dedcc3;
   color: #000;
+  cursor: pointer;
 }

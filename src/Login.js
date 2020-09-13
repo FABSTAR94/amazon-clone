@@ -35,11 +35,8 @@ function Login() {
 
   return (
     <div className="login">
-      <Link to="/">
-        <img
-          className="login__logo"
-          src="https://storage.googleapis.com/morgan-pryce-website.appspot.com/prod/exported-articles/MP0IMP_hJ97my-600x332.png"
-        />
+      <Link to="/" style={{ textDecoration: "none" }}>
+        <h1 className="login__logo">AMZ.Clone</h1>
       </Link>
       <div className="login__container">
         <h1>Sign in</h1>
