@@ -39,7 +39,7 @@ function Login() {
         <h1 className="login__logo">AMZ.Clone</h1>
       </Link>
       <div className="login__container">
-        <h1>Sign in</h1>
+        <h1>Sign-in</h1>
         <form>
           <h5>Email</h5>
           <input

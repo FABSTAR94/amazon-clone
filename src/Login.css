@@ -59,6 +59,7 @@
   border: 1px solid;
   margin-top: 10px;
   border-color: #6e9489;
+  cursor: pointer;
 }
 
 .login__registerButton {
@@ -69,4 +70,5 @@
   margin-top: 10px;
   border-color: #dedcc3;
   background-color: #dedcc3;
+  cursor: pointer;
 }
